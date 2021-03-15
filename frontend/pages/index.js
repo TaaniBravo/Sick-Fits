@@ -1,12 +1,7 @@
 import React from "react";
-import Page from "../components/Page";
 
 const index = () => {
-  return (
-    <Page>
-      <p>yoyo</p>
-    </Page>
-  );
+  return <p>yoyo</p>;
 };
 
 export default index;
