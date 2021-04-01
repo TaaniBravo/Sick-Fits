@@ -1,6 +1,7 @@
 // Import files needed.
 import "dotenv/config";
 import { config, createSchema } from "@keystone-next/keystone/schema"
+import {User} from "./schemas/User"
 
 const MONGODB = process.env.MONGODB_URI || "mongodb://localhost/keystone-sick-fits";
 
@@ -23,6 +24,7 @@ export default config({
     },
     lists: createSchema({
         // schema items go in here.
+        User
     }),
     ui: {
         // todo change this for roles
