@@ -1,7 +1,5 @@
-import React from "react";
-
 const index = () => {
-  return <p>yoyo</p>;
+  return <></>;
 };
 
 export default index;
