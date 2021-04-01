@@ -4,6 +4,7 @@ import { config, createSchema } from "@keystone-next/keystone/schema";
 import { createAuth } from "@keystone-next/auth";
 import { withItemData, statelessSessions } from "@keystone-next/keystone/session"
 import {User} from "./schemas/User";
+import {Product} from "./schemas/Product";
 
 const MONGODB = process.env.MONGODB_URI || "mongodb://localhost/keystone-sick-fits";
 
@@ -40,7 +41,8 @@ export default withAuth(config({
     },
     lists: createSchema({
         // schema items go in here.
-        User
+        User,
+        Product
     }),
     ui: {
         // todo change this for roles
@@ -50,6 +52,6 @@ export default withAuth(config({
         }
     },
     session: withItemData(statelessSessions(sessionConfig), {
-        User: 'id'
+        User: 'id name email'
     })
 }));
