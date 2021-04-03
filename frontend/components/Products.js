@@ -1,7 +1,6 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
-import React from "react";
-import Products from "../components/Products";
 
 const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
@@ -20,16 +19,20 @@ const ALL_PRODUCTS_QUERY = gql`
   }
 `;
 
-const products = () => {
+const Products = () => {
   const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
-  console.log(data, error, loading);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
   return (
     <div>
-      <Products />
+      <div>
+        {data.allProducts.map(product => (
+          <p key={product.id}>{product.name}</p>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default products;
+export default Products;
