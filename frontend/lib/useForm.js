@@ -7,9 +7,7 @@ const useForm = (initial = {}) => {
   const handleChange = e => {
     let { name, value, type } = e.target;
     if (type === "number") value = parseInt(value);
-    if (type === "file") value[0] = e.target.files;
-
-    console.log(value);
+    if (type === "file") [value] = e.target.files;
 
     setInputs({
       // copy existing state.
