@@ -5,18 +5,37 @@ const useForm = (initial = {}) => {
   const [inputs, setInputs] = useState(initial);
 
   const handleChange = e => {
-    const { name, value } = e.target;
+    let { name, value, type } = e.target;
+    if (type === "number") value = parseInt(value);
+    if (type === "file") value[0] = e.target.files;
+
+    console.log(value);
+
     setInputs({
       // copy existing state.
       ...inputs,
-      [name]: [value]
+      [name]: value
     });
+  };
+
+  const resetForm = () => {
+    setInputs(initial);
+  };
+
+  const clearForm = () => {
+    const blankState = Object.fromEntries(
+      Object.entries(inputs).map(([key, value]) => [key, ""])
+    );
+
+    setInputs(blankState);
   };
 
   // return the things we want from this custom hook.
   return {
     inputs,
-    handleChange
+    handleChange,
+    resetForm,
+    clearForm
   };
 };
 
