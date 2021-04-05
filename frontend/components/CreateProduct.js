@@ -50,11 +50,12 @@ const CreateProduct = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const product = await createProduct();
+    const res = await createProduct();
     clearForm();
     // Go to that product's page!
+    console.log(res);
     Router.push({
-      pathname: `/product/${product.data.createProduct.id}`
+      pathname: `/product/${res.data.createProduct.id}`
     });
   };
 
@@ -64,13 +65,7 @@ const CreateProduct = () => {
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="image">
           Image
-          <input
-            required
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleChange}
-          />
+          <input type="file" id="image" name="image" onChange={handleChange} />
         </label>
         <label htmlFor="name">
           Name
