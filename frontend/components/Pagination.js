@@ -21,8 +21,6 @@ const Pagination = ({ page }) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <DisplayError error={error} />;
 
-  page = parseInt(page);
-
   const { count } = data._allProductsMeta;
 
   const pageCount = Math.ceil(count / perPage);
