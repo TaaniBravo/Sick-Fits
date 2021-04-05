@@ -15,7 +15,7 @@ const UPDATE_PRODUCT_MUTATION = gql`
   ) {
     updateProduct(
       id: $id
-      data: { id: $id, name: $name, description: $description, price: $price }
+      data: { name: $name, description: $description, price: $price }
     ) {
       id
       name
@@ -33,32 +33,34 @@ const UpdateProduct = ({ id }) => {
     }
   });
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <DisplayError error={error} />;
-
   const [
     updateProduct,
     { data: updateData, error: updateError, loading: updateLoading }
-  ] = useMutation(UPDATE_PRODUCT_MUTATION, {
-    variables: {
-      id
-    }
-  });
+  ] = useMutation(UPDATE_PRODUCT_MUTATION);
 
   //   Call on our useForm states.
-  const { inputs, handleChange, resetForm, clearForm } = useForm(data.Product);
+  const { inputs, handleChange, resetForm, clearForm } = useForm(data?.Product);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // const res = await createProduct();
+    const res = await updateProduct({
+      variables: {
+        id,
+        name: inputs.name,
+        description: inputs.description,
+        price: inputs.price
+      }
+    });
     // clearForm();
     // // Go to that product's page!
-    // console.log(res);
     // Router.push({
-    //   pathname: `/product/${res.data.createProduct.id}`
+    //   pathname: `/product/${res.data.updateProduct.id}`
     // });
   };
+
+  if (loading) return <p>Loading</p>;
+  if (error) return <DisplayError error={error} />;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -97,7 +99,7 @@ const UpdateProduct = ({ id }) => {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">+ Add Product</button>
+        <button type="submit">Update Product</button>
       </fieldset>
     </Form>
   );
