@@ -1,5 +1,5 @@
 import React from "react";
-import RequestReset from "../components/RequestReset";
+import Reset from "../components/Reset";
 
 const reset = ({ query }) => {
   if (!query?.token) {
@@ -12,7 +12,7 @@ const reset = ({ query }) => {
   }
   return (
     <div>
-      <h1>reset yo shit!</h1>
+      <Reset token={query.token} />
     </div>
   );
 };

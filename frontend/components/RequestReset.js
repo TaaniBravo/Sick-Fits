@@ -20,14 +20,14 @@ const RequestReset = () => {
     email: ""
   });
 
-  const [signup, { data, error }] = useMutation(REQUEST_RESET_MUTATION, {
+  const [requestReset, { data, error }] = useMutation(REQUEST_RESET_MUTATION, {
     variables: inputs
   });
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await signup().catch(console.error);
+    await requestReset().catch(console.error);
 
     resetForm();
   };
