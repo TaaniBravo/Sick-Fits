@@ -26,6 +26,11 @@ const { withAuth } = createAuth({
             'password'
         ]
         // todo add in initial roles
+    },
+    passwordResetLink: {
+        async sendToken(args) {
+            console.log(args)
+        }
     }
 });
 
