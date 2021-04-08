@@ -1,4 +1,1 @@
-{
-    "include": ["**/*.ts", "**/*.js"],
-    "allowJs": true
-}
+{}

@@ -17,4 +17,7 @@
     "source.fixAll": true
   },
   "prettier.disableLanguages": ["javascript", "javascriptreact"],
+    "eslint.workingDirectories": [
+      "src"
+    ]
 }
