@@ -27,7 +27,7 @@ const SignUp = () => {
     name: ""
   });
 
-  const [signup, { data, error }] = useMutation(SIGNUP_MUTATION, {
+  const [signup, { data, error, loading }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs
   });
 
@@ -43,7 +43,7 @@ const SignUp = () => {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign Up For an Account</h2>
       <DisplayError error={error} />
-      <fieldset>
+      <fieldset disabled={loading} aria-busy={loading}>
         {data?.createUser && (
           <p>Signed up with {data.createUser.email} - Please Sign In</p>
         )}

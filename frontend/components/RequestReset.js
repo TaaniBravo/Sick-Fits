@@ -20,9 +20,12 @@ const RequestReset = () => {
     email: ""
   });
 
-  const [requestReset, { data, error }] = useMutation(REQUEST_RESET_MUTATION, {
-    variables: inputs
-  });
+  const [requestReset, { data, error, loading }] = useMutation(
+    REQUEST_RESET_MUTATION,
+    {
+      variables: inputs
+    }
+  );
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -36,7 +39,7 @@ const RequestReset = () => {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Reset Password</h2>
       <DisplayError error={error} />
-      <fieldset>
+      <fieldset disabled={loading} aria-busy={loading}>
         {data?.sendUserPasswordResetLink === null && (
           <p>Success! Check your email for a link!</p>
         )}
