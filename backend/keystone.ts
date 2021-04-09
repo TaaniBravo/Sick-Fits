@@ -9,6 +9,7 @@ import {ProductImage} from "./schemas/ProductImage";
 import {CartItem} from "./schemas/CartItem";
 import { insertSeedData } from "./seed-data";
 import { sendPasswordResetEmail } from "./lib/mail"
+import { extendGraphqlSchema } from "./mutations";
 
 const MONGODB = process.env.MONGODB_URI || "mongodb://localhost/keystone-sick-fits";
 
@@ -58,6 +59,7 @@ export default withAuth(config({
         ProductImage,
         CartItem
     }),
+    extendGraphqlSchema,
     ui: {
         // todo change this for roles
         isAccessAllowed: ({ session }) => {
