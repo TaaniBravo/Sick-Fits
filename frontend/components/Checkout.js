@@ -9,6 +9,8 @@ import {
 } from "@stripe/react-stripe-js";
 import SickButton from "./styles/SickButton";
 import nProgress from "nprogress";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
@@ -18,6 +20,20 @@ const CheckoutFormStyles = styled.form`
   gap: 1rem;
 `;
 
+const CHECKOUT_ORDER_MUTATION = gql`
+  mutation CHECKOUT_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
+
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const CheckoutForm = () => {
@@ -25,6 +41,8 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+
+  const [checkout, { error: gqlError }] = useMutation(CHECKOUT_ORDER_MUTATION);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -38,10 +56,18 @@ const CheckoutForm = () => {
     });
     console.log(paymentMethod);
     // Handle any errors from stripe.
-    if (error) setError(error);
-    // Handle any erros from stripe.
+    if (error) {
+      setError(error);
+      nProgress.done();
+      return;
+    }
 
     // Send the token from step 3 to our keystone serve, via a custom mutation!
+    const order = await checkout({
+      variables: { token: paymentMethod.id }
+    });
+
+    console.log(order);
 
     // Change the page to view the order.
 
@@ -55,6 +81,7 @@ const CheckoutForm = () => {
   return (
     <CheckoutFormStyles onSubmit={handleSubmit}>
       {error && <p style={{ fontSize: 12 }}>{error.message}</p>}
+      {gqlError && <p style={{ fontSize: 12 }}>{gqlError.message}</p>}
       <CardElement />
       <SickButton>Checkout</SickButton>
     </CheckoutFormStyles>
