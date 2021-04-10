@@ -3,8 +3,6 @@ import { list } from "@keystone-next/keystone/schema";
 import { text, password, relationship } from "@keystone-next/fields";
 
 export const User = list({
-  // access:
-  // ui
   fields: {
     name: text({ isRequired: true }),
     email: text({ isRequired: true, isUnique: true }),
@@ -17,6 +15,14 @@ export const User = list({
         itemView: { fieldMode: "read" }
       }
     }),
-    orders: relationship({ ref: "Order.user", many: true })
+    orders: relationship({ ref: "Order.user", many: true }),
+    role: relationship({
+      ref: "Role.assignedTo"
+      // to do access control
+    }),
+    products: relationship({
+      ref: "Product.user",
+      many: true
+    })
   }
 });
