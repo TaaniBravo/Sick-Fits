@@ -3,8 +3,6 @@ import { list } from "@keystone-next/keystone/schema";
 import formatMoney from "../lib/formatMoney";
 
 export const Order = list({
-  // todo
-  // access:
   fields: {
       label: virtual({
           graphQLReturnType: "String",

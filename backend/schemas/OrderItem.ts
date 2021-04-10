@@ -1,9 +1,7 @@
-import { integer, relationship, select, text } from "@keystone-next/fields";
+import { integer, relationship, text } from "@keystone-next/fields";
 import { list } from "@keystone-next/keystone/schema";
 
 export const OrderItem = list({
-  // todo
-  // access:
   fields: {
     name: text({ isRequired: true }),
     description: text({
