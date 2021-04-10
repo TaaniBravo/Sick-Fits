@@ -11,6 +11,9 @@ import SickButton from "./styles/SickButton";
 import nProgress from "nprogress";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
+import { useRouter } from "next/dist/client/router";
+import { useCart } from "../lib/cartState";
+import { CURRENT_USER_QUERY } from "./User";
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
@@ -20,7 +23,7 @@ const CheckoutFormStyles = styled.form`
   gap: 1rem;
 `;
 
-const CHECKOUT_ORDER_MUTATION = gql`
+const CREATE_ORDER_MUTATION = gql`
   mutation CHECKOUT_ORDER_MUTATION($token: String!) {
     checkout(token: $token) {
       id
@@ -41,8 +44,12 @@ const CheckoutForm = () => {
   const [loading, setLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
+  const { closeCart } = useCart();
 
-  const [checkout, { error: gqlError }] = useMutation(CHECKOUT_ORDER_MUTATION);
+  const [checkout, { error: gqlError }] = useMutation(CREATE_ORDER_MUTATION, {
+    refetchQueries: [{ query: CURRENT_USER_QUERY }]
+  });
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -67,11 +74,14 @@ const CheckoutForm = () => {
       variables: { token: paymentMethod.id }
     });
 
-    console.log(order);
-
     // Change the page to view the order.
+    router.push({
+      pathname: "/order/[id]",
+      query: { id: order.data.checkout.id }
+    });
 
     // Close the cart.
+    closeCart();
 
     // Turn the loader off.
     setLoading(false);
