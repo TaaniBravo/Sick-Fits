@@ -4,10 +4,10 @@ import formatMoney from "../lib/formatMoney";
 
 export const Order = list({
   fields: {
-      label: virtual({
-          graphQLReturnType: "String",
-          resolver: item => `${formatMoney(item.total)}`
-      }),
+    label: virtual({
+      graphQLReturnType: "String",
+      resolver: item => `${formatMoney(item.total)}`
+    }),
     total: integer(),
     items: relationship({ ref: "OrderItem.order", many: true }),
     user: relationship({ ref: "User.orders" }),
