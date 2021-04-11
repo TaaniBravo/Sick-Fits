@@ -1,10 +1,11 @@
 {
-  "name": "Sick-Fits",
+  "name": "sickfits",
   "version": "1.0.0",
   "description": "Sick Fits is a web store built with the MERNG stack.",
-  "main": "./front",
+  "main": "./backend",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd backend && npm run dev",
     "install": "cd frontend && npm install",
     "build": "cd frontend && npm run build",
     "heroku-postbuild": "npm run build"
