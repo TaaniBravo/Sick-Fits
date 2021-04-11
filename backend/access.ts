@@ -18,8 +18,6 @@ export const permissions = {
   ...generatedPermissions
 };
 
-console.log(permissions);
-
 // Rule based function
 // Rules can return a boolean - yes or no - or a filter which limits which products they can CRUD.
 export const rules = {

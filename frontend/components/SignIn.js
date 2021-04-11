@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import router from "next/router";
 import React from "react";
 import useForm from "../lib/useForm";
 import DisplayError from "./ErrorMessage";
@@ -42,6 +43,10 @@ const SignIn = () => {
     await signin();
 
     resetForm();
+
+    router.push({
+      pathname: "/"
+    });
   };
 
   const error =

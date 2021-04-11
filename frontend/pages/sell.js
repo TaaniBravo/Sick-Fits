@@ -1,11 +1,12 @@
 import React from "react";
 import CreateProduct from "../components/CreateProduct";
+import PleaseSignIn from "../components/PleaseSignIn";
 
 function sell() {
   return (
-    <div>
+    <PleaseSignIn>
       <CreateProduct />
-    </div>
+    </PleaseSignIn>
   );
 }
 

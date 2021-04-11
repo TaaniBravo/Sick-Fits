@@ -53,7 +53,6 @@ const CreateProduct = () => {
     const res = await createProduct();
     clearForm();
     // Go to that product's page!
-    console.log(res);
     Router.push({
       pathname: `/product/${res.data.createProduct.id}`
     });

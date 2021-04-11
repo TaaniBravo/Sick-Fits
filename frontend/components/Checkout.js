@@ -61,7 +61,6 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement)
     });
-    console.log(paymentMethod);
     // Handle any errors from stripe.
     if (error) {
       setError(error);
