@@ -21,9 +21,6 @@ const addToCart = async (
   const [existingCartItem] = allCartItems;
 
   if (existingCartItem) {
-    console.log(
-      `Since ${existingCartItem.quantity} is the cart already, incremented by 1.`
-    );
     return await context.lists.CartItem.updateOne({
       id: existingCartItem.id,
       // 4. if it is, increment by 1

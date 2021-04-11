@@ -70,14 +70,13 @@ export default withAuth(
     }),
     extendGraphqlSchema,
     ui: {
-      // todo change this for roles
       isAccessAllowed: ({ session }) => {
-        console.log(session);
+        // console.log(session)
         return !!session?.data;
       }
     },
     session: withItemData(statelessSessions(sessionConfig), {
-      User: `id name email ${permissionsList.join(" ")}`
+      User: `id name email role {${permissionsList.join(" ")}}`
     })
   })
 );
