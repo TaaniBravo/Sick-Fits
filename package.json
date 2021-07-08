@@ -5,12 +5,12 @@
   "main": "./backend/keystone.ts",
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
-    "build": "concurrently \"cd backend && npm run build\" \"cd frontend && npm run build\"",
+    "build": "cd backend && npm build && cd ../frontend && npm build",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
     "start:prod": "cd backend && npm run start",
     "client": "cd frontend && npm run start",
     "seed": "cd backend && node seed-data",
-    "install": "concurrently --success first \"cd backend && npm i\" \"cd frontend && npm i\"",
+    "install": "cd backend && npm i && cd ../frontend && npm i",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
