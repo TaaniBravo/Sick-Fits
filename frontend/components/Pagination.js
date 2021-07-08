@@ -1,11 +1,11 @@
-import Head from "next/head";
-import Link from "next/link";
-import React from "react";
-import PaginationStyles from "./styles/PaginationStyles";
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/client";
-import DisplayError from "./ErrorMessage";
-import { perPage } from "../config";
+import Head from 'next/head';
+import Link from 'next/link';
+import React from 'react';
+import PaginationStyles from './styles/PaginationStyles';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/client';
+import DisplayError from './ErrorMessage';
+import { perPage } from '../config';
 
 export const PAGINATION_QUERY = gql`
   query PAGINATION_QUERY {
@@ -19,7 +19,7 @@ const Pagination = ({ page }) => {
   const { data, error, loading } = useQuery(PAGINATION_QUERY);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <DisplayError error={error} />;
+  if (error) return null;
 
   const { count } = data._allProductsMeta;
 

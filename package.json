@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
     "build": "concurrently \"cd backend && npm run build\" \"cd frontend && npm run build\"",
-    "start": "concurrently \"cd backend && npm run start\" \"cd frontend && npm run start\"",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run dev",
+    "start:prod": "node index.js",
     "client": "cd frontend && npm run start",
     "seed": "cd backend && node seed-data",
-    "install": "concurrently \"cd backend && npm i\" \"cd frontend && npm i\"",
+    "install:build": "concurrently --success first \"cd backend && npm i\" \"cd frontend && npm i\"",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/TaaniBravo/Sick-Fits#readme",
   "dependencies": {
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.2.0",
+    "if-env": "^1.0.4"
   }
 }
