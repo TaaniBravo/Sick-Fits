@@ -2,7 +2,7 @@
   "name": "sickfits",
   "version": "1.0.0",
   "description": "Sick Fits is a web store built with the MERNG stack.",
-  "main": "./backend",
+  "main": "./backend/keystone.ts",
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
     "build": "cd client && npm run build",
