@@ -5,12 +5,12 @@
   "main": "./backend",
   "scripts": {
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
-    "build": "concurrently \"cd backend && npm run build\" \"cd frontend && npm run build\"",
+    "build": "cd client && npm run build",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run dev",
-    "start:prod": "node index.js",
+    "start:prod": "cd backend && npm run start",
     "client": "cd frontend && npm run start",
     "seed": "cd backend && node seed-data",
-    "install:build": "concurrently --success first \"cd backend && npm i\" \"cd frontend && npm i\"",
+    "install": "concurrently --success first \"cd backend && npm i\" \"cd frontend && npm i\"",
     "heroku-postbuild": "npm run build"
   },
   "repository": {
