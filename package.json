@@ -4,14 +4,13 @@
   "description": "Sick Fits is a web store built with the MERNG stack.",
   "main": "./backend/keystone.ts",
   "scripts": {
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "dev": "concurrently \"cd backend && npm dev\" \"cd frontend && npm dev\"",
     "build": "concurrently \"cd backend && npm build\" \"cd frontend && npm build\"",
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
     "start:prod": "cd backend && npm run start",
     "client": "cd frontend && npm run start",
     "seed": "cd backend && node seed-data",
-    "install": "cd backend && npm i && cd ../frontend && npm i",
-    "heroku-postbuild": "npm run build"
+    "install": "cd backend && npm i && cd ../frontend && npm i"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,7 @@
   "homepage": "https://github.com/TaaniBravo/Sick-Fits#readme",
   "dependencies": {
     "concurrently": "^6.2.0",
+    "cross-env": "^7.0.3",
     "if-env": "^1.0.4"
   }
 }
