@@ -1,11 +1,11 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import styled from 'styled-components';
-import Product from './Product';
-import { perPage } from '../config';
-import DisplayError from './ErrorMessage';
-import Link from 'next/link';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import styled from "styled-components";
+import Product from "./Product";
+import { perPage } from "../config";
+import DisplayError from "./ErrorMessage";
+import Link from "next/link";
 
 export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
@@ -28,6 +28,10 @@ const ProductsList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
+
+  @media screen and (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SignInNeeded = styled.p`
@@ -68,14 +72,13 @@ const Products = ({ page }) => {
   if (error)
     return (
       <SignInNeeded>
-        Please{' '}
+        Please{" "}
         <Link
           href={{
-            pathname: '/signin'
-          }}
-        >
+            pathname: "/signin"
+          }}>
           <StyledSpan>Sign-In/Sign-Up</StyledSpan>
-        </Link>{' '}
+        </Link>{" "}
         to View Products
       </SignInNeeded>
     );

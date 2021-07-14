@@ -35,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 1.6;
+    width: 100vw;
+    height: 100vh;
   }
 
   a {

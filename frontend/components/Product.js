@@ -12,21 +12,22 @@ const Product = ({ product }) => {
       <img
         src={product?.photo?.image?.publicUrlTransformed}
         alt={product.name}
+        width='100%'
+        height='100%'
       />
       <Title>
         <Link href={`/product/${product.id}`}>{product.name}</Link>
       </Title>
       <PriceTag>{formatMoney(product.price)}</PriceTag>
       <p>{product.description}</p>
-      <div className="buttonList">
+      <div className='buttonList'>
         <Link
           href={{
             pathname: "/update",
             query: {
               id: product.id
             }
-          }}
-        >
+          }}>
           Edit ✏️
         </Link>
         <AddToCart id={product.id} />

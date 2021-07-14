@@ -38,7 +38,12 @@ If you have any questions or concerns reach out to us at our Githubs.
 
 ## Development
 
-Would like to further build out the checkout system. Redesign of the site so it's not so in your face.
+- [ ] Further develop checkout to be page and system with PayPal integration
+- [ ] Mobile Responsive. It's a bit wonky at the moment.
+- [ ] Styling that makes more of a modern site rather then the templated Sick Fits.
+- [ ] Switch over frontend to TypeScript.
+- [ ] Organize Components folder.
+- [ ] Better comments.
 
 ## Tests
 

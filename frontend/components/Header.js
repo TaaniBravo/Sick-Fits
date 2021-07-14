@@ -7,8 +7,8 @@ import styled from "styled-components";
 
 const Logo = styled.h1`
   background: red;
-  font-size: 4rem;
-  margin-left: 2rem;
+  font-size: clamp(1.5rem, 4rem, 4rem);
+  margin-left: clamp(1rem, 2rem, 2rem);
   position: relative;
   z-index: 2;
   transform: skew(-7deg);
@@ -39,13 +39,13 @@ const HeaderStyles = styled.header`
 const Header = () => {
   return (
     <HeaderStyles>
-      <div className="bar">
+      <div className='bar'>
         <Logo>
-          <Link href="/">Sick Fits</Link>
+          <Link href='/'>Hvstle</Link>
         </Logo>
         <Nav />
       </div>
-      <div className="sub-bar">
+      <div className='sub-bar'>
         <Search />
       </div>
       <Cart />
