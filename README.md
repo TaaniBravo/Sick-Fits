@@ -25,10 +25,10 @@ Keystone is a great UI for the backend side of things allowing users to add thin
 - [KeystoneJS] - Backend server and UI.
 - [node.js] - Evented I/O for the backend.
 - [Mongoose/MongoDB] - Database.
-- [Styled_Components] - Styling individual components without needing to make them their own file.
+- [Styled_Components] - Styling individual components with CSS code right in the JS.
 - [Cloudinary] - Image Database.
 - [Stripe] - Payment Intergration.
-- [Heroku] - For deployment.
+- [Heroku] - For frontend deployment.
 
 ## Questions
 
