@@ -10,7 +10,9 @@
     "start:prod": "cd backend && npm run start",
     "client": "cd frontend && npm run start",
     "seed": "cd backend && node seed-data",
-    "install": "cd backend && npm i && cd ../frontend && npm i"
+    "install": "cd backend && npm i && cd ../frontend && npm i",
+    "heroku-prebuild": "cd backend && npm i",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
